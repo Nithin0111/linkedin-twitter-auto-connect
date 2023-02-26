@@ -1,3 +1,28 @@
+/**
+This function retrieves all "Connect" buttons on the LinkedIn page, clicks each of them to send a connection request, and then sends a message to the background script with the count of successfully connected users.
+@returns {void}
+*/
+function connectUsers() {}
+/**
+
+This function stops the connection process by clearing all timeouts.
+@returns {void}
+*/
+function stopConnecting() {}
+/**
+
+This function listens to messages sent from the background script and performs corresponding actions, such as stopping the connection process.
+@param {Object} request - The message sent from the background script.
+@param {Object} sender - The sender of the message.
+@param {function} sendResponse - The function to send a response back to the sender.
+@returns {void}
+*/
+function onMessageListener(request, sender, sendResponse) {}
+/**
+
+This function initializes the connection process by calling the connectUsers function, and listens for messages from the background script.
+@returns {void}
+*/
 function main() {
   let connectButtons = document.querySelectorAll(
     "button[aria-label^='Invite'] span.artdeco-button__text"

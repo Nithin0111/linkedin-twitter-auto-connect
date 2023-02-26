@@ -1,29 +1,29 @@
-// let followedPeopleCount = 0;
+/**
+This IIFE retrieves all "Follow" buttons on the LinkedIn page, clicks each of them to follow a user, and then sends a message to the background script with the count of successfully followed users.
+@returns {void}
+/
+(() => {
+function followUsers() {
+/*
+This function follows the next user in the list of follow buttons, sets a timeout for a random amount of time, and sends a message to the background script with the updated count of followed users.
+@returns {void}
+*/
+function followNextUser() {}
 
-// function followUsers() {
-//   const followButtons = document.querySelectorAll(
-//     'div[role="button"][data-testid][data-testid$="-follow"]'
-//   );
+/**
+This function stops the follow process by clearing all timeouts.
+@returns {void}
+*/
+function stopFollowUsers() {}
 
-//   // if (!followButtons.length || !followButtons.length > 0) {
-//   //   alert("No people to follow");
-//   //   return;
-//   // }
+/**
+This function listens to messages sent from the background script and performs corresponding actions, such as stopping the follow process.
+@param {Object} request - The message sent from the background script.
+@param {Object} sender - The sender of the message.
+@param {function} sendResponse - The function to send a response back to the sender.
+@returns {void}
 
-//   followButtons.forEach((button, index) => {
-//     setTimeout(() => {
-//       button.click();
-//       followedPeopleCount++;
-//       chrome.runtime.sendMessage({
-//         type: "followed_count",
-//         count: followedPeopleCount,
-//       });
-//     }, index * 5000);
-//   });
-// }
-
-// followUsers();
-
+*/
 (() => {
   let followButtons = document.querySelectorAll(
     'div[role="button"][data-testid][data-testid$="-follow"]'
@@ -52,8 +52,6 @@
           resolve();
         });
       });
-
-      // console.log("clicking the button", button);
 
       button.click();
 
@@ -89,23 +87,6 @@
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     const { action } = request;
     console.log("action", action);
-    // switch (action) {
-    //   case "start":
-    //     sendResponse(followUsers());
-    //     break;
-    //   case "stop":
-    //     stopFollowUsers();
-    //     break;
-    //   case "followed_count":
-    //     progressValue.textContent = `${count}`;
-    //     circularProgress.style.background = `conic-gradient(#0073b1 ${
-    //       progressStartValue * 3.6
-    //     }deg, #ededed 0deg)`;
-    //     progressStartValue = count;
-    //     break;
-    //   default:
-    //     break;
-    // }
 
     if (action === "stop_follow") {
       console.log("Stopping the follow");
@@ -113,5 +94,3 @@
     }
   });
 })();
-
-// init(); // Path: scripts\twitter.js
