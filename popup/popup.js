@@ -38,7 +38,7 @@ async function connectEventTrigger() {
       connectBtnEl.innerText = "Start connecting";
       if (tab.url.includes("linkedin.com")) {
         await chrome.runtime.sendMessage({ action: "stop_connect" });
-      } else if (tab.url.includes("linkedin.com")) {
+      } else if (tab.url.includes("twitter.com")) {
         await chrome.runtime.sendMessage({ action: "stop_follow" });
       }
     } else if (

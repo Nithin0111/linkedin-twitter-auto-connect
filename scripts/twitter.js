@@ -24,7 +24,7 @@
 
 // followUsers();
 
-function main() {
+(() => {
   let followButtons = document.querySelectorAll(
     'div[role="button"][data-testid][data-testid$="-follow"]'
   );
@@ -44,16 +44,35 @@ function main() {
       }
 
       const button = followButtons[currentElement];
-      button.click();
-      currentIndex++;
-      currentElement++;
-      followedCount++;
-      chrome.runtime.sendMessage({
-        action: "followed_count",
-        count: followedCount,
+
+      const promise = new Promise((resolve, reject) => {
+        // attach a click event listener to the button
+        button.addEventListener("click", () => {
+          // resolve the Promise when the button is clicked
+          resolve();
+        });
       });
 
-      timeOutIds.push(setTimeout(followNextUser, 5000));
+      // console.log("clicking the button", button);
+
+      button.click();
+
+      promise.then(() => {
+        currentIndex++;
+        currentElement++;
+        followedCount++;
+        chrome.runtime.sendMessage({
+          action: "followed_count",
+          count: followedCount,
+        });
+
+        const randomTime = (Math.floor(Math.random() * 5) + 5) * 1000;
+        timeOutIds.push(setTimeout(followNextUser, randomTime));
+      });
+
+      promise.catch((err) => {
+        console.log("Error in button click", err);
+      });
     }
 
     followNextUser();
@@ -69,7 +88,7 @@ function main() {
 
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     const { action } = request;
-
+    console.log("action", action);
     // switch (action) {
     //   case "start":
     //     sendResponse(followUsers());
@@ -89,9 +108,10 @@ function main() {
     // }
 
     if (action === "stop_follow") {
+      console.log("Stopping the follow");
       stopFollowUsers();
     }
   });
-}
+})();
 
-main(); // Path: scripts\twitter.js
+// init(); // Path: scripts\twitter.js

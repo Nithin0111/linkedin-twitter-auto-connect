@@ -8,16 +8,6 @@
   "background": {
     "service_worker": "background.js"
   },
-  "content_scripts": [
-    {
-      "matches": ["https://*.twitter.com/*"],
-      "js": ["scripts/twitter.js"]
-    },
-    {
-      "matches": ["https://*.linkedin.com/*"],
-      "js": ["scripts/linkedin.js"]
-    }
-  ],
   "action": {
     "default_icon": {
       "16": "icons/icon-16.png",

@@ -50,14 +50,12 @@ function main() {
           count: connectedCount,
         });
 
-        // generate a random number between 5 and 10
         const randomTime = (Math.floor(Math.random() * 5) + 5) * 1000;
-
         timeOutIds.push(setTimeout(connectNextUser, randomTime));
       });
 
-      promise.catch(() => {
-        console.log("Promise rejected");
+      promise.catch((err) => {
+        console.log("Error in button click", err);
       });
     }
 
