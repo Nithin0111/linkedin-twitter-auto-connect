@@ -1,0 +1,32 @@
+{
+  "name": "Auto Connect Bot",
+  "description": "Linkedin/Twitter Auto Connect Bot",
+  "author": "Nithin harsha",
+  "version": "1.0",
+  "permissions": ["tabs", "activeTab", "scripting", "storage"],
+  "host_permissions": ["https://*.linkedin.com/*", "https://*.twitter.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.twitter.com/*"],
+      "js": ["scripts/twitter.js"]
+    },
+    {
+      "matches": ["https://*.linkedin.com/*"],
+      "js": ["scripts/linkedin.js"]
+    }
+  ],
+  "action": {
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "24": "icons/icon-24.png",
+      "32": "icons/icon-32.png",
+      "64": "icons/icon-64.png"
+    },
+    "default_popup": "popup/popup.html",
+    "default_title": "Auto Connect Bot"
+  },
+  "manifest_version": 3
+}

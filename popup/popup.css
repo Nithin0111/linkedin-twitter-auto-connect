@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+:root {
+  --background-color: #f5f5f5;
+  --main-color: #000;
+  --main-color-hover: #e5e5e5;
+  --main-color-active: #d5d5d5;
+  --main-color-disabled: #c5c5c5;
+  --main-font: "Poppins", sans-serif;
+  --primary-font-size: 1.5em;
+  --secondary-font-size: 1.2em;
+  --tertiary-font-size: 1em;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-width: 350px;
+  background: var(--background-color);
+  padding: 20px 0;
+}
+
+.heading {
+  font-size: var(--primary-font-size);
+  font-weight: bold;
+  color: var(--main-color);
+  margin: 0;
+  padding: 0;
+  font-family: var(--main-font);
+  text-align: center;
+}
+
+.message-text {
+  font-size: var(--secondary-font-size);
+  font-weight: normal;
+  color: var(--main-color);
+  margin: 0;
+  padding: 10px;
+  font-family: var(--main-font);
+  text-align: center;
+}
+
+.invitations-progress {
+  display: grid;
+  place-items: center;
+}
+
+.invitations-heading {
+  font-size: var(--secondary-font-size);
+  font-weight: normal;
+  color: var(--main-color);
+  margin: 0;
+  padding: 10px;
+  font-family: var(--main-font);
+  text-align: center;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.circular-progress {
+  position: relative;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background: conic-gradient(#0077b5 3.6deg, #ededed 0deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.circular-progress::before {
+  content: "";
+  position: absolute;
+  height: 125px;
+  width: 125px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+.progress-value {
+  position: relative;
+  font-size: var(--primary-font-size);
+  font-weight: 600;
+  color: #0077b5;
+}
+.text {
+  font-size: var(--secondary-font-size);
+  margin-bottom: 10px;
+  margin-top: 5px;
+  font-weight: 500;
+  color: #0077b5;
+}
+
+.connect-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: var(--tertiary-font-size);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  background-color: #0077b5;
+  color: #ffffff;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s ease-in-out;
+}
+
+.connect-btn:hover {
+  background-color: #0a66c2;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+}
+
+.connect-btn:active {
+  background-color: #005b8e;
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.buttons {
+  text-align: center;
+}
