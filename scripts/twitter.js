@@ -45,6 +45,11 @@ This function listens to messages sent from the background script and performs c
 
       const button = followButtons[currentElement];
 
+      if (button.textContent === "Following") {
+        currentElement++;
+        followNextUser();
+      }
+
       const promise = new Promise((resolve, reject) => {
         // attach a click event listener to the button
         button.addEventListener("click", () => {
