@@ -57,6 +57,12 @@ function main() {
 
       button.click();
 
+      setTimeout(() => {
+        if (button.innerText !== "Pending") {
+          reject(new Error("Button not clicked"));
+        }
+      }, 5000);
+
       promise.then(() => {
         let sendNoteButton = document.querySelector(
           "button[aria-label='Send now']"
@@ -81,6 +87,14 @@ function main() {
 
       promise.catch((err) => {
         console.log("Error in button click", err);
+        chrome.notification.create("error", {
+          type: "basic",
+          iconUrl: "../icons/icon-32.png",
+          title: "Error",
+          message: "Connect Button not clicked",
+          requireInteraction: true,
+          timeout: 5000,
+        });
       });
     }
 
@@ -97,24 +111,6 @@ function main() {
 
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     const { action } = request;
-
-    // switch (action) {
-    //   case "start":
-    //     sendResponse(followUsers());
-    //     break;
-    //   case "stop":
-    //     stopFollowUsers();
-    //     break;
-    //   case "followed_count":
-    //     progressValue.textContent = `${count}`;
-    //     circularProgress.style.background = `conic-gradient(#0073b1 ${
-    //       progressStartValue * 3.6
-    //     }deg, #ededed 0deg)`;
-    //     progressStartValue = count;
-    //     break;
-    //   default:
-    //     break;
-    // }
 
     if (action === "stop_connect") {
       stopConnecting();
